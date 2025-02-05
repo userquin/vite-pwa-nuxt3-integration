@@ -1,5 +1,6 @@
 import { computed, toValue } from 'vue'
-import type { MaybeRef } from 'vue'
+import type { MaybeRef, UnwrapNestedRefs } from 'vue'
+import type { PwaInjection } from '../plugins/types'
 import { useNuxtApp } from '#imports'
 import type { PwaTransparentImageProps } from '#build/pwa-icons/PwaTransparentImage'
 import type { PwaMaskableImageProps } from '#build/pwa-icons/PwaMaskableImage'
@@ -64,6 +65,9 @@ export function useApplePwaIcon(image: AppleImageType) {
 }
 export function useAppleSplashScreenPwaIcon(image: AppleSplashScreenImageType) {
   return usePWAIcon('appleSplashScreen', image)
+}
+export function usePWA(): UnwrapNestedRefs<PwaInjection> | undefined {
+  return useNuxtApp().$pwa
 }
 
 function usePWAIcon(
